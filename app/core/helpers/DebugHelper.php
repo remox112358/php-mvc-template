@@ -17,9 +17,17 @@ class DebugHelper
     public static function show($arg, $die = false)
     {
         print('<pre>');
-        is_array($arg) ? print_r($arg) : var_dump($arg);
+        
+        // Checking type of argument
+        if (is_array($arg)) {
+            print_r($arg);
+        } else {
+            var_dump($arg);
+        }
+
         print('</pre>');
 
+        // If die argument was passed as true
         if ($die) die();
     }
 }
