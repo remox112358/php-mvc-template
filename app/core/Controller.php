@@ -39,19 +39,26 @@ abstract class Controller
 
         // Path to view
         $path   = 'app/views/' . $view . '.php';
+
+        // Path to layout
         $layout = 'app/views/layouts/' . $layout . '.php';
 
-        // If this layout and view exists
-        if (file_exists($layout) && file_exists($path)) {
-            ob_start();
-
-            require $path;
-
-            $content = ob_get_clean();
-
-            require $layout;
+        // If this layout exists
+        if (file_exists($layout)) {
+            // If this view exists
+            if (file_exists($path)) {
+                ob_start();
+    
+                require $path;
+    
+                $content = ob_get_clean();
+    
+                require $layout;
+            } else {
+                echo 'View: <b>' . $path . '</b> doesn`t exist';
+            }
         } else {
-            echo 'Layout or View doesn`t exists';
+            echo 'Layout: <b>' . $layout . '</b> doesn`t exist';
         }
     }
 }
