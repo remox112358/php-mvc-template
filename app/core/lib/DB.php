@@ -1,11 +1,11 @@
 <?php
 
-namespace app\core;
+namespace app\core\lib;
 
 /**
  * Application database working class.
  */
-class DB
+final class DB
 {
     
 }

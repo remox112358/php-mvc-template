@@ -5,7 +5,7 @@ namespace app\core\helpers;
 /**
  * Debug functionality class.
  */
-class DebugHelper
+final class DebugHelper
 {
     /**
      * Shows information in a more convenient format.
@@ -19,11 +19,7 @@ class DebugHelper
         print('<pre>');
         
         // Checking type of argument
-        if (is_array($arg)) {
-            print_r($arg);
-        } else {
-            var_dump($arg);
-        }
+        is_array($arg) ? print_r($arg) : var_dump($arg);
 
         print('</pre>');
 

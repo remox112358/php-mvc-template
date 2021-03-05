@@ -2,15 +2,24 @@
 
 namespace app\controllers;
 
-class SiteController
+use app\core\Controller;
+
+class SiteController extends Controller
 {
-    public function actionIndex()
+    public function home()
     {
-        return 'test';
+        $name = 'Artyom';
+
+        $this->render('site/home.php', compact('name'));
     }
 
-    public function actionContact()
+    public function about()
     {
-        return 'test';
+        echo 'about';
+    }
+
+    public function contact()
+    {
+        echo 'contact';
     }
 }

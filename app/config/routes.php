@@ -4,16 +4,24 @@
  * Application routes.
  */
 return [
-    'site' => [
-        'controller' => 'site',
-        'action'     => 'index',
+    '' => [
+        'controller' => 'SiteController',
+        'action'     => 'home',
     ],
-    'site/about' => [
-        'controller' => 'site',
+    'about' => [
+        'controller' => 'SiteController',
         'action'     => 'about',
     ],
-    'site/contact' => [
-        'controller' => 'site',
+    'contact' => [
+        'controller' => 'SiteController',
         'action'     => 'contact',
+    ],
+    'login' => [
+        'controller' => 'AuthController',
+        'action'     => 'login',
+    ],
+    'signup' => [
+        'controller' => 'AuthController',
+        'action'     => 'signup',
     ],
 ];

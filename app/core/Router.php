@@ -84,11 +84,11 @@ class Router
 
         // If the visited route exists
         if ($this->match()) {
-            $path = 'app\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+            $path = 'app\controllers\\' . $this->params['controller'];
             
             // If the controller of route exists
             if (class_exists($path)) {
-                $action = 'action' . ucfirst($this->params['action']);
+                $action = $this->params['action'];
 
                 // If the action of controller exists
                 if (method_exists($path, $action)) {
@@ -96,9 +96,6 @@ class Router
                     $controller->$action();
                 }
             }
-            
-            DebugHelper::show($path);
-            DebugHelper::show($action);
         }
     }
 }
