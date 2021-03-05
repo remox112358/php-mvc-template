@@ -17,40 +17,41 @@ abstract class Controller
     public $route;
 
     /**
-     * Current layout.
-     *
-     * @var string
-     */
-    public $layout;
-
-    /**
      * Controller constructor.
      *
      * @param array $route
      */
-    public function __construct($route, $layout = 'master')
+    public function __construct($route)
     {
         $this->route  = $route;
-        $this->layout = $layout;
     }
 
-    public function render($view, $variables)
+    /**
+     * Renders the view with sended variables.
+     *
+     * @param string $view
+     * @param array $variables
+     * @return void
+     */
+    public function render($layout, $view, $variables)
     {
         extract($variables);
 
         // Path to view
-        $path = 'app/views/' . $view;
+        $path   = 'app/views/' . $view . '.php';
+        $layout = 'app/views/layouts/' . $layout . '.php';
 
-        // If this view exists
-        if (file_exists($path)) {
-            // Buffer opening
+        // If this layout and view exists
+        if (file_exists($layout) && file_exists($path)) {
             ob_start();
 
             require $path;
 
             $content = ob_get_clean();
 
-            require 'app/views/layouts/' . $this->layout . '.php';
+            require $layout;
+        } else {
+            echo 'Layout or View doesn`t exists';
         }
     }
 }
