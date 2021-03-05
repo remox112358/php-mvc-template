@@ -44,22 +44,29 @@ abstract class Controller
         // Path to layout
         $layout = 'app/views/layouts/' . $layout . '.php';
 
-        // If this layout exists
-        if (file_exists($layout)) {
-            // If this view exists
-            if (file_exists($path)) {
-                ob_start();
-    
-                require $path;
-    
-                $content = ob_get_clean();
-    
-                require $layout;
-            } else {
-                ErrorHandler::throw(404);
-            }
+        if (file_exists($layout) && file_exists($path)) {
+            ob_start();
+
+            require $path;
+
+            $content = ob_get_clean();
+
+            require $layout;
         } else {
             ErrorHandler::throw(404);
         }
+    }
+
+    /**
+     * Redirects to other url.
+     *
+     * @param string $url
+     * @return void
+     */
+    public function redirect($url)
+    {
+        header('location: ' . $url);
+
+        exit;
     }
 }
