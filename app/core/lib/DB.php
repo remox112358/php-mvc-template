@@ -2,10 +2,58 @@
 
 namespace app\core\lib;
 
+use PDO;
+use app\core\helpers\DebugHelper;
+
 /**
- * Application database working class.
+ * Application database class.
  */
-final class DB
+class DB
 {
-    
+    /**
+     * Database object.
+     *
+     * @var object
+     */
+    protected $db;
+
+    /**
+     * Database config.
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
+     * Database constructor.
+     */
+    public function __construct()
+    {
+        $config = require 'app/config/db.php';
+
+        $this->config = $config;
+        $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'], $config['user'], $config['password']);
+    }
+
+    /**
+     * Makes query to database using PDO.
+     *
+     * @param string $sql
+     * @param array $params
+     * @return object
+     */
+    public function query(string $sql, array $params = [])
+    {
+        $stmt = $this->db->prepare($sql);
+
+        if (! empty($params)) {
+            foreach ($params as $param => $value) {
+                $stmt->bindValue(':', $param, $value);
+            }
+        }
+        
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
