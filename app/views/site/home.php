@@ -1,1 +1,1 @@
-<h1>CURRENT DATE IS: <?= $date ?></h1>
+<?php echo '<pre>'; var_dump($this); echo '</pre>'; ?>

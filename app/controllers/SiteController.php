@@ -8,9 +8,7 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $date = date('Y-m-d');
-
-        $this->render('master', 'site/home', compact('date'));
+        $this->render('master', 'site/home');
     }
 
     public function about()

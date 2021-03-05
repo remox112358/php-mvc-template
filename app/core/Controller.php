@@ -3,6 +3,7 @@
 namespace app\core;
 
 use app\core\helpers\DebugHelper;
+use app\core\lib\ErrorHandler;
 
 /**
  * Controller base functionality class.
@@ -23,7 +24,7 @@ abstract class Controller
      */
     public function __construct($route)
     {
-        $this->route  = $route;
+        $this->route = $route;
     }
 
     /**
@@ -33,12 +34,12 @@ abstract class Controller
      * @param array $variables
      * @return void
      */
-    public function render($layout, $view, $variables)
+    public function render($layout, $view, $variables = [])
     {
         extract($variables);
 
         // Path to view
-        $path   = 'app/views/' . $view . '.php';
+        $path = 'app/views/' . $view . '.php';
 
         // Path to layout
         $layout = 'app/views/layouts/' . $layout . '.php';
@@ -55,11 +56,10 @@ abstract class Controller
     
                 require $layout;
             } else {
-                echo 'View: <b>' . $path . '</b> doesn`t exist';
+                ErrorHandler::throw(404);
             }
         } else {
-            echo 'Layout: <b>' . $layout . '</b> doesn`t exist';
+            ErrorHandler::throw(404);
         }
     }
 }
-
