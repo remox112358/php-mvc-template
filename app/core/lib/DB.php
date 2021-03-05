@@ -44,14 +44,17 @@ class DB
      */
     public function query(string $sql, array $params = [])
     {
+        // Prepares query to database
         $stmt = $this->db->prepare($sql);
 
         if (! empty($params)) {
             foreach ($params as $param => $value) {
+                // Binds params to query
                 $stmt->bindValue(':', $param, $value);
             }
         }
         
+        // Executes query to database
         $stmt->execute();
 
         return $stmt;
