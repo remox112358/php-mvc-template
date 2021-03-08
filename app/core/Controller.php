@@ -11,16 +11,12 @@ use app\core\lib\Exception;
 abstract class Controller
 {
     /**
-     * Current route.
-     *
-     * @var array
+     * @var array $route - Current route.
      */
     public $route;
 
     /**
-     * Controller constructor.
-     *
-     * @param array $route
+     * @param array $route - Current route.
      */
     public function __construct($route)
     {
@@ -28,13 +24,14 @@ abstract class Controller
     }
 
     /**
-     * Renders the view with sended variables.
+     * Renders the view with transmitted variables.
      *
-     * @param string $view
-     * @param array $variables
+     * @param  string $layout    - Name of the layout that needs to render.
+     * @param  string $view      - Name of the view that needs to include in layout.
+     * @param  array  $variables - Transmitted variables thats needs to be in rendered view.
      * @return void
      */
-    public function render($layout, $view, $variables = [])
+    public function render(string $layout, string $view, array $variables = [])
     {
         extract($variables);
 
@@ -60,10 +57,10 @@ abstract class Controller
     /**
      * Redirects to other url.
      *
-     * @param string $url
+     * @param string $url - Redirect URL address.
      * @return void
      */
-    public function redirect($url)
+    public function redirect(string $url)
     {
         header('location: ' . $url);
 

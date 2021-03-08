@@ -27,7 +27,7 @@ class ArticleController extends Controller
                 'date'    => date('Y-m-d H:i'),
             ],
         ];
-
+        
         $this->render('master', 'article/index', compact('articles'));
     }
 }

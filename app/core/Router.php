@@ -11,27 +11,23 @@ use app\core\lib\Exception;
 class Router
 {
     /**
-     * Application registered routes.
-     *
-     * @var array
+     * @var array $routes - Application registered routes.
      */
     protected $routes = [];
 
     /**
-     * Request params.
-     *
-     * @var array
+     * @var array $params - Request params.
      */
     protected $params = [];
 
     /**
      * Adds the modified to regexp routes to the local params
      *
-     * @param string $route
-     * @param array $params
+     * @param  string $route  - Route that needs adding to router.
+     * @param  array  $params - Route params that needs adding to router.
      * @return void
      */
-    private function add($route, $params)
+    private function add(string $route, array $params)
     {
         $route = '#^' . $route . '$#';
         $this->routes[$route] = $params;

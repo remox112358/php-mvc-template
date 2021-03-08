@@ -11,16 +11,12 @@ use app\core\helpers\DebugHelper;
 class DB
 {
     /**
-     * Database object.
-     *
-     * @var object
+     * @var object $db - Database connection object.
      */
     protected $db;
 
     /**
-     * Database config.
-     *
-     * @var array
+     * @var array $config - Database connection config.
      */
     protected $config;
 
@@ -38,10 +34,10 @@ class DB
     /**
      * Makes query to database using PDO.
      *
-     * @param string $sql
-     * @param array $params
-     * @param string $fetch
-     * @return object
+     * @param  string $sql    - SQL query that needs to prepare.
+     * @param  array  $params - SQL query params that needs to bind.
+     * @param  string $fetch  - Fetch type of query.
+     * @return void
      */
     public function query(string $sql, array $params = [], string $fetch = 'row')
     {
@@ -63,9 +59,8 @@ class DB
 
     /**
      * Returns query result in row format.
-     * If the result isn`t one field, then returns first field value.
      *
-     * @param object $stmt
+     * @param  object $stmt - SQL query statement.
      * @return array
      */
     public function row($stmt) : array
@@ -75,11 +70,12 @@ class DB
 
     /**
      * Returns query result in column format.
+     * If the result isn`t one field, returns first field value.
      *
-     * @param object $stmt
-     * @return string
+     * @param object $stmt - SQL query statement.
+     * @return void
      */
-    public function column($stmt) : string
+    public function column($stmt)
     {
         return $stmt->fetchColumn();
     }

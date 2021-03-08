@@ -10,8 +10,8 @@ final class DebugHelper
     /**
      * Shows information in a more convenient format.
      *
-     * @param mixed $arg
-     * @param bool $die
+     * @param  mixed $arg - Transmitted variable that needs to display.
+     * @param  bool  $die - Exit from script or not.
      * @return void
      */
     public static function show($arg, $die = false)
