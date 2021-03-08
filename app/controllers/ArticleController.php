@@ -10,23 +10,9 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = [
-            [
-                'title'   => 'Article 1',
-                'excerpt' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto, suscipit vitae fugiat ab temporibus.',
-                'date'    => date('Y-m-d H:i'),
-            ],
-            [
-                'title'   => 'Article 2',
-                'excerpt' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto, suscipit vitae fugiat ab temporibus.',
-                'date'    => date('Y-m-d H:i'),
-            ],
-            [
-                'title'   => 'Article 3',
-                'excerpt' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore architecto, suscipit vitae fugiat ab temporibus.',
-                'date'    => date('Y-m-d H:i'),
-            ],
-        ];
+        $db = new DB;
+
+        $articles = $db->query("SELECT * FROM articles");
         
         $this->render('master', 'article/index', compact('articles'));
     }
