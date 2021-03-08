@@ -32,7 +32,7 @@ class DB
         $config = require 'app/config/db.php';
 
         $this->config = $config;
-        $this->db     = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'], $config['user'], $config['password']);
+        $this->db     = new PDO($config['dsn'] . ';' . $config['charset'], $config['user'], $config['password']);
     }
 
     /**

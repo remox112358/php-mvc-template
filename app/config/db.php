@@ -4,8 +4,8 @@
  * Database connect settings.
  */
 return [
-    'host'     => 'localhost',
-    'name'     => 'mvc',
+    'dsn'      => 'mysql:host=localhost;dbname=mvc',
     'user'     => 'root',
     'password' => '',
+    'charset'  => 'utf8',
 ];

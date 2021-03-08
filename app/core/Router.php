@@ -3,6 +3,7 @@
 namespace app\core;
 
 use app\core\helpers\DebugHelper;
+use app\core\lib\Exception;
 
 /**
  * Application router class.
@@ -44,7 +45,7 @@ class Router
     public function match() : bool
     {
         // Visited URL
-        $url = trim($_SERVER['REQUEST_URI'], '/');
+        $url = $_SERVER['REQUEST_URI'];
 
         foreach ($this->routes as $route => $params) {
             // If the route equal to visited URL
@@ -94,8 +95,10 @@ class Router
                 if (method_exists($path, $action)) {
                     $controller = new $path($this->params);
                     $controller->$action();
-                }
-            }
+                } 
+            } 
+        } else {
+            Exception::throw(404);
         }
     }
 }
