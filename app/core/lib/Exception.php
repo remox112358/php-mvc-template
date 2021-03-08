@@ -2,7 +2,7 @@
 
 namespace app\core\lib;
 
-class ErrorHandler
+class Exception
 {
     /**
      * Displays the error page by code.

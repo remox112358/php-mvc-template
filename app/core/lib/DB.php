@@ -32,7 +32,7 @@ class DB
         $config = require 'app/config/db.php';
 
         $this->config = $config;
-        $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'], $config['user'], $config['password']);
+        $this->db     = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['name'], $config['user'], $config['password']);
     }
 
     /**
@@ -40,9 +40,10 @@ class DB
      *
      * @param string $sql
      * @param array $params
+     * @param string $fetch
      * @return object
      */
-    public function query(string $sql, array $params = [])
+    public function query(string $sql, array $params = [], string $fetch = 'row')
     {
         // Prepares query to database
         $stmt = $this->db->prepare($sql);
@@ -50,13 +51,36 @@ class DB
         if (! empty($params)) {
             foreach ($params as $param => $value) {
                 // Binds params to query
-                $stmt->bindValue(':', $param, $value);
+                $stmt->bindValue(':' . $param, $value);
             }
         }
         
         // Executes query to database
         $stmt->execute();
 
-        return $stmt;
+        return $this->$fetch($stmt);
+    }
+
+    /**
+     * Returns query result in row format.
+     * If the result isn`t one field, then returns first field value.
+     *
+     * @param object $stmt
+     * @return array
+     */
+    public function row($stmt) : array
+    {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns query result in column format.
+     *
+     * @param object $stmt
+     * @return string
+     */
+    public function column($stmt) : string
+    {
+        return $stmt->fetchColumn();
     }
 }

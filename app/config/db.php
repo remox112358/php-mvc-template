@@ -4,7 +4,7 @@
  * Database connect settings.
  */
 return [
-    'host'     => '127.0.0.1',
+    'host'     => 'localhost',
     'name'     => 'mvc',
     'user'     => 'root',
     'password' => '',
