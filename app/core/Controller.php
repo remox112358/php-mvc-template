@@ -11,12 +11,16 @@ use app\core\lib\Exception;
 abstract class Controller
 {
     /**
-     * @var array $route - Current route.
+     * Current route.
+     *
+     * @var array
      */
     public $route;
 
     /**
-     * @param array $route - Current route.
+     * Current route.
+     *
+     * @param array $route
      */
     public function __construct($route)
     {

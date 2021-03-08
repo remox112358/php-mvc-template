@@ -11,12 +11,16 @@ use app\core\helpers\DebugHelper;
 class DB
 {
     /**
-     * @var object $db - Database connection object.
+     * Database connection object.
+     *
+     * @var object
      */
     protected $db;
 
     /**
-     * @var array $config - Database connection config.
+     * Database connection config.
+     *
+     * @var array
      */
     protected $config;
 
