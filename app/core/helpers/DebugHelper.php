@@ -3,7 +3,7 @@
 namespace app\core\helpers;
 
 /**
- * Debug functionality class.
+ * Debug helper functionality class.
  */
 final class DebugHelper
 {
@@ -18,12 +18,10 @@ final class DebugHelper
     {
         print('<pre>');
         
-        // Checking type of argument
         is_array($arg) ? print_r($arg) : var_dump($arg);
 
         print('</pre>');
 
-        // If die argument was passed as true
         if ($die) die();
     }
 }
