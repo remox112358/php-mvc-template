@@ -11,6 +11,13 @@ use app\core\helpers\DebugHelper;
 abstract class Model
 {
     /**
+     * Table name of current model.
+     *
+     * @var string
+     */
+    public $tableName;
+
+    /**
      * Database connection object.
      *
      * @var object
