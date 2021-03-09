@@ -3,17 +3,17 @@
 namespace app\core\lib;
 
 /**
- * Exception base functionality class.
+ * Response base functionality class.
  */
-class Exception
+class Response
 {
     /**
-     * Displays the error page by code.
+     * Displays the http response page by code.
      *
      * @param  int $code - HTTP error code.
      * @return void
      */
-    public static function throw(int $code)
+    public static function statusCode(int $code)
     {
         http_response_code($code);
 

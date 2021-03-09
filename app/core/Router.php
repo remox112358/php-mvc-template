@@ -3,7 +3,7 @@
 namespace app\core;
 
 use app\core\helpers\DebugHelper;
-use app\core\lib\Exception;
+use app\core\lib\Response;
 
 /**
  * Application router class.
@@ -94,7 +94,7 @@ class Router
                 } 
             } 
         } else {
-            Exception::throw(404);
+            Response::statusCode(404);
         }
     }
 }

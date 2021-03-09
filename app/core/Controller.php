@@ -3,7 +3,7 @@
 namespace app\core;
 
 use app\core\helpers\DebugHelper;
-use app\core\lib\Exception;
+use app\core\lib\Response;
 
 /**
  * Controller base functionality class.
@@ -54,7 +54,7 @@ abstract class Controller
 
             require $layout;
         } else {
-            Exception::throw(404);
+            Response::statusCode(404);
         }
     }
 
